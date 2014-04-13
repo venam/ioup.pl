@@ -8,6 +8,7 @@ I've added some new features:
 * upload/remove multiple files at the same time
 * error handling
 * removing file by name or token instead of just by token.
+* list available files with full links
 
 Dependencies
 ------------
