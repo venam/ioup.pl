@@ -49,6 +49,7 @@ sub help() {
 	print "    
   -h          --help                  Display this usage information.
   -l          --list                  List current files associated with token.
+  -lf         --fulllist              Same as -l but with full links
   [files ..]                          Upload the file listed to the server.
   -r [token ..]  --remove [tokens ..] Remove a file or many files (in form of p/Bl3hMo0 or file name)
   -v          --version               Display version.\n"; 
@@ -84,6 +85,21 @@ sub check_list() {
 	$easy->setopt( CURLOPT_HTTPPOST() => create_usual_form() );
 	$easy->perform();
 	return $easy->{body};
+}
+
+sub check_list_with_links() {
+	$easy  =  Net::Curl::Easy->new({ body => '' });
+	$easy->setopt( CURLOPT_URL, "http://pub.iotek.org/p/list.php" );
+	$easy->setopt( Net::Curl::Easy::CURLOPT_FILE(),\$easy->{body} );
+
+	$easy->setopt( CURLOPT_HTTPPOST() => create_usual_form() );
+	$easy->perform();
+	my @results = split /\n/, $easy->{body};
+	my $result  = "";
+	for (@results) {
+		$result .= "http://pub.iotek.org/".$_."\n";
+	}
+	return $result;
 }
 
 sub get_remove_code($) {
@@ -157,6 +173,9 @@ else {
 	}
 	elsif ( $ARGV[0] eq '-l' || $ARGV[0] eq '--list') {
 		print check_list;
+	}
+	elsif ( $ARGV[0] eq '-lf' || $ARGV[0] eq '--fulllist') {
+		print check_list_with_links;
 	}
 	elsif ( $ARGV[0] eq '-v' || $ARGV[0] eq '--version') {
 		version;
