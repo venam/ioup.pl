@@ -15,7 +15,6 @@ To run ioup.pl you'll need `Net::Curl::Form`.
 
 License
 -------
-`
       Copyright (c) 2014, IOTek <patrick (at) iotek (dot) org>
 
 
@@ -30,6 +29,5 @@ License
       WHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN
       ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
       OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
-`
 
 
