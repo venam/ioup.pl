@@ -6,8 +6,9 @@ About
 This is the Perl version of [ioup](https://github.com/deadcat64/ioup). <br>
 I've added some new features:
 * upload/remove multiple files at the same time
+* upload the content of a directory
 * error handling
-* removing file by name or token instead of just by token.
+* removing file by name or token instead of just by token
 * list available files with full links
 
 Dependencies

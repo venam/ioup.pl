@@ -43,6 +43,7 @@ my $MINUS       = $HEADER ."[". $FAIL ."-". $HEADER ."] ". $ENDC;
 
 #the curl handle
 my $easy  =  Net::Curl::Easy->new({ body => '' });
+sub upload_file($);
 
 sub help() {
 	print $INFO."Usage: $0 [options] [file]\n";
@@ -156,8 +157,13 @@ sub upload_file($) {
 		print "\n".$PLUS."Uploaded file $file\n";
 	}
 	elsif (-d $file){
-		#maybe upload all dir?
-		print $MINUS."$file is a directory\n";
+		print $INFO."$file is a directory\n";
+		print $INFO."Uploading all the directory content.\n";
+		chdir $file;
+		my @files = glob(qq#"*"#);
+		foreach (@files) {
+			upload_file($_);
+		}
 	}
 	else {
 		print $MINUS."Cannot access file $file\n";
